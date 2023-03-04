@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, Dispatch, SetStateAction } from 'react';
+import Page1 from './pages/Page1';
+import Page2 from './pages/Page2';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export interface Ipage {
+  setPageI: Dispatch<SetStateAction<number>>
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  const [page, setPage] = useState(1)
+
+  return(
+    <>
+      {
+        page == 1 ? 
+        (<Page1 setPageI={setPage}/>) :
+        (<Page2 setPageI={setPage}/>)
+      }
+    </>
+  )
+}

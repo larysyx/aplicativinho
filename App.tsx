@@ -1,21 +1,24 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
-import Page1 from './pages/Page1';
-import Page2 from './pages/Page2';
-
+import { Dispatch, SetStateAction, useState } from "react";
+import {
+  ScreenSlider1, ScreenSlider2, ScreenSlider3, ScreenSlider4
+} from "./src/screens"
 export interface Ipage {
   setPageI: Dispatch<SetStateAction<number>>
 }
-
 export default function App() {
   const [page, setPage] = useState(1)
-
-  return(
-    <>
-      {
-        page == 1 ? 
-        (<Page1 setPageI={setPage}/>) :
-        (<Page2 setPageI={setPage}/>)
-      }
-    </>
-  )
+  switch (page) {
+    case 1:
+      return <ScreenSlider1 setPageI={setPage} />
+      break;
+    case 2:
+      return <ScreenSlider2 setPageI={setPage} />
+      break;
+    case 3:
+      return <ScreenSlider3 setPageI={setPage} />
+      break;
+    case 4:
+      return <ScreenSlider4 setPageI={setPage} />
+      break;
+  }
 }

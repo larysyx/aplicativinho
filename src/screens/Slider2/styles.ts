@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native/types";
+import { StyleSheet } from "react-native";
 import { colors } from "../../styles/colors";
 export const styles = StyleSheet.create({
     container: {
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         marginTop: 40,
         margin: 20,
         borderRadius: 20,
-        backgroundColor: colors.laranjinha
+        backgroundColor: colors.retanguloclaro
     },
     buttonSlider: {
         flexDirection: "row",

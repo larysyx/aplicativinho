@@ -16,19 +16,19 @@ export function Slider1({ setPageI }: Ipage) {
             <View style={styles.panel}>
                 <ComponentTitleSlider titleI='Bolos, doces e sobremesas' />
                 <FlatList
-                  data={slide1Texts}S
+                  data={slide1Texts}
                   renderItem={({ item }) =>
                     <ComponentListMaker key={item.id} textMarker={item.text} />
             }   
             keyExtractor={(item) => item.id} 
             />     
-            </View>
-            <View style={styles.buttonSlider}>
-                <ComponentButtonSlider onPresI={() => setPageI(1)} />
-                <ComponentButtonSlider onPresI={() => setPageI(2)} />
-                <ComponentButtonSlider onPresI={() => setPageI(3)} />
-                <ComponentButtonSlider onPresI={() => setPageI(4)} />
-            </View>
-        </ImageBackground>
-    );
+        </View>
+        <View style={styles.buttonSlider}>
+            <ComponentButtonSlider onPresI={() => setPageI(1)} page={true} />
+            <ComponentButtonSlider onPresI={() => setPageI(2)} page={false} />
+            <ComponentButtonSlider onPresI={() => setPageI(3)} page={false} />
+            <ComponentButtonSlider onPresI={() => setPageI(4)} page={false} />
+        </View>
+    </ImageBackground>
+   );
 }

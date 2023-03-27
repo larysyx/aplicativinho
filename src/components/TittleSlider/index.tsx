@@ -4,7 +4,7 @@ export interface ITitle {
     titleI: string
 }
 export function TitleSlider({ titleI }: ITitle) {
-    return {
-        <Text ;style={styles.title}>{titleI}</Text>
-    }
+    return (
+        <Text style={styles.title}>{titleI}</Text>
+    )
 }

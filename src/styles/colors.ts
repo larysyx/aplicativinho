@@ -1,7 +1,7 @@
-export const colors ={
-    laranjinha: '#FF855F',
-    botao: '#F43B00',
-    retanguloclaro: 'rgba(217,217,217, 0.8)',
+export const colors = {
+    laranjinha: '#fa9373',
+    botao: '#fc6435',
+    retanguloclaro: 'rgba(256,256,256, 0.8)',
     black: '#000',
     white: '#FFF',
 }

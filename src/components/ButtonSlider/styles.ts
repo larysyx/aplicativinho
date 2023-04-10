@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     outra: {
         width: 30,
         height: 30,
-        backgroundColor: colors.botao,
+        backgroundColor: colors.laranjaescuro,
         borderRadius: 15
     }
 })

@@ -1,17 +1,27 @@
 import React from "react";
-import { View, KeyboardAvoidingView, Text, TextInput  } from "react-native";
+import { View, KeyboardAvoidingView, Text, TextInput } from "react-native";
 import { styles } from "./styles";
+import { Octicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors } from "../../styles/colors";
 import { ComponentButtoninterface } from "../../components";
 import { LoginTypes } from "../../navigations/login.navigation"
 
-export function Login({navigation}: LoginTypes){
+export function Cadastrar({navigation}: LoginTypes){
     return (
-        <View style={styles.container}>
+             <View style={styles.container}>
             <KeyboardAvoidingView>
-                <Text style={styles.title}> Login </Text>
+                <Text style={styles.title}> Cadastrar </Text>
+                <View style={styles.formRow}>
+                <Octicons name="person" style= {styles.icon} />
+                    <TextInput
+                        placeholder="Nome"
+                        placeholderTextColor={colors.cinza}
+                        autoCapitalize="none"
+                        style={styles.input}
+                        />
+                </View>
                 <View style={styles.formRow}>
                 <MaterialCommunityIcons name="email-outline" style= {styles.icon} />
                     <TextInput
@@ -32,9 +42,9 @@ export function Login({navigation}: LoginTypes){
                         style={styles.input}
                         />
                 </View>
-                <ComponentButtoninterface title="Login" type='lecuro' onPresI={() => { console.log('Login') }} />
-                <ComponentButtoninterface title="Cadastrar" type='laranjinha' onPresI={() => { navigation.navigate('Cadastrar') }} />
+                <ComponentButtoninterface title="Salvar" type='lecuro' onPresI={() => { console.log('Salvar') }} />
+                <ComponentButtoninterface title="Voltar" type='laranjinha' onPresI={() => { navigation.navigate('Login') }} />
             </KeyboardAvoidingView>
-        </View>
+            </View>
     )
 }

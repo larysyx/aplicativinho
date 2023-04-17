@@ -12,7 +12,7 @@ export function Cadastrar({navigation}: LoginTypes){
     return (
              <View style={styles.container}>
             <KeyboardAvoidingView>
-                <Text style={styles.title}> Cadastrar </Text>
+                <Text style={styles.title}> Cadastre-se </Text>
                 <View style={styles.formRow}>
                 <Octicons name="person" style= {styles.icon} />
                     <TextInput

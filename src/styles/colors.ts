@@ -5,4 +5,5 @@ export const colors = {
     black: '#000',
     white: '#FFF',
     cinza: '#d9d9d9',
+    titulo: '#37474F',
 }

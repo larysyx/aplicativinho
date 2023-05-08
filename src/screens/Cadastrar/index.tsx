@@ -42,7 +42,7 @@ export function Cadastrar({navigation}: LoginTypes){
                         style={styles.input}
                         />
                 </View>
-                <ComponentButtoninterface title="Salvar" type='lecuro' onPresI={() => { console.log('Salvar') }} />
+                <ComponentButtoninterface title="Salvar" type='lescuro' onPresI={() => { navigation.navigate('Drawer') }} />
                 <ComponentButtoninterface title="Voltar" type='laranjinha' onPresI={() => { navigation.navigate('Login') }} />
             </KeyboardAvoidingView>
             </View>

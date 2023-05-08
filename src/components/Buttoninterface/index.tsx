@@ -4,13 +4,13 @@ import { styles } from './styles';
 export interface IBInterface extends TouchableOpacityProps {
     onPresI: () => void
     title: string
-    type: 'laranjinha' | 'lecuro' | 'black'
+    type: 'laranjinha' | 'lescuro' | 'black'
  
 }
 export function Buttoninterface({ onPresI, title, type, ...rest }: IBInterface) {
     return (
         <TouchableOpacity style={ 
-            type == 'lecuro' ? styles.buttonLescuro :
+            type == 'lescuro' ? styles.buttonLescuro :
                 type == 'laranjinha' ? styles.buttonLclaro:
                     styles.buttonblack
          } onPress={onPresI} 

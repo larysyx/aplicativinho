@@ -1,10 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator, BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { ScreenPerfil } from "../screens"
+import { ScreenCamera, ScreenPerfil } from "../screens"
 import { colors } from '../styles/colors';
-import { Ionicons } from '@expo/vector-icons';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 type TabParamList = {
   Perfil: undefined
+  Camera: undefined
 }
 type TabScreenNavigationProp = BottomTabNavigationProp<TabParamList, 'Perfil'>
 export type TabTypes = {
@@ -16,7 +18,7 @@ export function TabNavigation() {
     <Tab.Navigator
         screenOptions={{
             headerStyle: {
-                backgroundColor: colors.laranjinha
+                backgroundColor: colors.laranjaescuro
             },
             headerTintColor: colors.white,
             tabBarActiveBackgroundColor: colors.laranjinha,
@@ -26,9 +28,17 @@ export function TabNavigation() {
             <Tab.Screen name="Perfil" component={ScreenPerfil}
             options={{
                 tabBarIcon:() =>(
-                    <Ionicons name='person' color={colors.white} size={24} />
+                    <Ionicons name='person' color={colors.laranjaescuro} size={24} />
                 )
             }}
+            />
+            <Tab.Screen name="Camera" component={ScreenCamera}
+              options={{
+                tabBarIcon: () => (
+                  <Feather name="camera" color={colors.laranjaescuro} size={24} />
+                )
+              }}
+            
             />
     </Tab.Navigator>
   );

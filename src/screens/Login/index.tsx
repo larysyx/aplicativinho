@@ -4,7 +4,7 @@ import { styles } from "./styles";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors } from "../../styles/colors";
-import { ComponentButtoninterface } from "../../components";
+import { ComponentButtonInterface } from "../../components";
 import { LoginTypes } from "../../navigations/login.navigation"
 
 export function Login({navigation}: LoginTypes){
@@ -32,8 +32,8 @@ export function Login({navigation}: LoginTypes){
                         style={styles.input}
                         />
                 </View>
-                <ComponentButtoninterface title="Login" type='lescuro' onPresI={() => { navigation.navigate('Perfil') }} />
-                <ComponentButtoninterface title="Cadastrar" type='laranjinha' onPresI={() => { navigation.navigate('Cadastrar') }} />
+                <ComponentButtonInterface title="Login" type='lescuro' onPresI={() => { navigation.navigate('Perfil') }} />
+                <ComponentButtonInterface title="Cadastrar" type='laranjinha' onPresI={() => { navigation.navigate('Cadastrar') }} />
             </KeyboardAvoidingView>
         </View>
     )

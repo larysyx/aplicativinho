@@ -5,7 +5,7 @@ import { Octicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors } from "../../styles/colors";
-import { ComponentButtoninterface } from "../../components";
+import { ComponentButtonInterface } from "../../components";
 import { LoginTypes } from "../../navigations/login.navigation"
 
 export function Cadastrar({navigation}: LoginTypes){
@@ -42,8 +42,8 @@ export function Cadastrar({navigation}: LoginTypes){
                         style={styles.input}
                         />
                 </View>
-                <ComponentButtoninterface title="Salvar" type='lescuro' onPresI={() => { navigation.navigate('Drawer') }} />
-                <ComponentButtoninterface title="Voltar" type='laranjinha' onPresI={() => { navigation.navigate('Login') }} />
+                <ComponentButtonInterface title="Salvar" type='lescuro' onPresI={() => { navigation.navigate('Drawer') }} />
+                <ComponentButtonInterface title="Voltar" type='laranjinha' onPresI={() => { navigation.navigate('Login') }} />
             </KeyboardAvoidingView>
             </View>
     )

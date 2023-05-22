@@ -1,6 +1,6 @@
 import { Camera, CameraCapturedPicture, CameraType } from 'expo-camera';
 import { Component, useRef, useState } from 'react';
-import { Button, StyleSheet, Text, Image, View, Alert } from 'react-native';
+import { Button, StyleSheet, Text, Image, View, Alert, TouchableOpacity } from 'react-native';
 import { ComponentButtonInterface } from '../../components';
 import { ComponentButtonTakePicture } from '../../components';
 import { styles } from './styles';
@@ -38,6 +38,7 @@ export function CameraScreen() {
     if(ref.current) {
       const picture = await ref.current.takePictureAsync()
       setPhoto(picture)
+      setTakePhoto(false)
     }
   }
 
@@ -63,8 +64,8 @@ export function CameraScreen() {
   async function pickImage() {
     const result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
-      aspect: [9,16],
-      quality: 10
+      aspect: [3,4],
+      quality: 1
     })
     if (!result.canceled) {
       setPhoto(result.assets[0])
@@ -73,17 +74,26 @@ export function CameraScreen() {
 
   return (
     <View style={styles.container}>
-      <ComponentButtonInterface title='Gire' type="laranjinha" onPresI={toggleCameraType}/>
+  
+    {takePhoto ? (
+      <>
       <Camera style={styles.camera} type={type} ref={ref} ratio='1:1'>
+        <ComponentButtonInterface title='Gire' type="laranjinha" onPresI={toggleCameraType}/>
         <ComponentButtonTakePicture onPressIn={takePicture}/>
       </Camera>
-
-      
+      </>
+    ) : (
+      <>
       {photo && photo.uri && (
         <Image source={{ uri:photo.uri }} style={styles.img} />
       )}
+      <ComponentButtonInterface title='Tirar foto' type="laranjinha" onPresI={()=> setTakePhoto(true)}/>
       <ComponentButtonInterface title='Salvar foto' type="laranjinha" onPresI={savePhoto}/>
       <ComponentButtonInterface title='Abrir foto' type="laranjinha" onPresI={pickImage}/>
-    </View>
-  );
+      </>
+   )}
+   
+   </View>
+
+);
 }

@@ -35,7 +35,9 @@ export const styles = StyleSheet.create({
       height: Dimensions.get('window').width *0.7,
     },
     sorriso: {
-      
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
     }
   });
   

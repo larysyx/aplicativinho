@@ -122,7 +122,7 @@ export function CameraScreen() {
       >
         <ComponentButtonInterface title='Gire' type="laranjinha" onPresI={toggleCameraType}/>
         <ComponentButtonTakePicture onPressIn={takePicture}/>
-        <ComponentButtonInterface title='Escaneie novamente' type="laranjinha" onPresI={()=> setScanned(true)}/>
+        <ComponentButtonInterface title='Escaneie novamente' type="laranjinha" onPresI={()=> setScanned(false)}/>
       </Camera>
       <View style={styles.sorriso}>
         {face && face.smilingProbability && face.smilingProbability > 0.5 ? (
@@ -142,8 +142,6 @@ export function CameraScreen() {
       <ComponentButtonInterface title='Abrir foto' type="laranjinha" onPresI={pickImage}/>
       </>
    )}
-   
    </View>
-
 );
 }

@@ -6,7 +6,7 @@ import { DrawerNavigation } from "./drawer.navigation"
 type LoginStackParamList = {
   Login: undefined
   Cadastrar: undefined
-  Perfil: undefined
+  Tab: undefined
   Drawer: undefined
 }
 type LoginScreenNavigationProp = StackNavigationProp<LoginStackParamList, 'Login'>
@@ -19,7 +19,7 @@ export function LoginNavigation() {
     <Stack.Navigator screenOptions={{ headerShown:false }}>
       <Stack.Screen name="Login" component={ScreenLogin} />
       <Stack.Screen name="Cadastrar" component={ScreenCadastrar} />
-      <Stack.Screen name= "Perfil" component={TabNavigation} />
+      <Stack.Screen name= "Tab" component={TabNavigation} />
       <Stack.Screen name= "Drawer" component={DrawerNavigation} />
     </Stack.Navigator>
   );

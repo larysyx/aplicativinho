@@ -1,4 +1,4 @@
-import { Camera, CameraCapturedPicture, CameraType } from 'expo-camera';
+import { Camera, CameraCapturedPicture, CameraType, FaceDetectionResult } from 'expo-camera';
 import { Component, useRef, useState } from 'react';
 import { Button, StyleSheet, Text, Image, View, Alert, TouchableOpacity } from 'react-native';
 import { ComponentButtonInterface } from '../../components';
@@ -6,6 +6,8 @@ import { ComponentButtonTakePicture } from '../../components';
 import { styles } from './styles';
 import * as MediaLibrary from 'expo-media-library';
 import * as ImagePicker from 'expo-image-picker';
+import * as FaceDetector from 'expo-face-detector';
+import { BarCodeScanner, BarCodeScannerResult } from 'expo-barcode-scanner';
 
 export function CameraScreen() {
   const [type, setType] = useState(CameraType.back);
@@ -13,9 +15,12 @@ export function CameraScreen() {
   const [permissionMedia, requestPermissionMedia] = MediaLibrary.usePermissions();
   const [photo, setPhoto] = useState<CameraCapturedPicture | ImagePicker.ImagePickerAsset>();
   const ref= useRef<Camera>(null)
-  const [takePhoto, setTakePhoto] = useState(false)
+  const [takePhoto, setTakePhoto] = useState(false);
+  const [permissionQrCode, requestPermissionQrCode] = BarCodeScanner.usePermissions();
+  const [scanned, setScanned] = useState(false);
+  const [face, setFace] = useState<FaceDetector.FaceFeature>()
 
-  if (!permissionCamera) {
+  if (!permissionCamera || !permissionMedia || !permissionQrCode) {
     // Camera permissions are still loading
     return <View />;
   }
@@ -43,7 +48,7 @@ export function CameraScreen() {
   }
 
   if (!permissionMedia) {
-    return <View />;
+    return <View/>;
   }
 
   if (!permissionMedia.granted) {
@@ -51,6 +56,19 @@ export function CameraScreen() {
       <View style={styles.container}>
         <Text style={{ textAlign: 'center' }}>Precisa de sua permissão para salvar a imagem</Text>
         <Button onPress={requestPermissionMedia} title="permita o acesso" />
+      </View>
+    );
+  }
+
+  if (!permissionQrCode) {
+    return <View/>
+  }
+
+  if (!permissionQrCode.granted) {
+    return (
+      <View style={styles.container}>
+        <Text style={{ textAlign: 'center' }}>Precisa de sua permissão ler o QRCode</Text>
+        <Button onPress={requestPermissionQrCode} title="permita a leitura" />
       </View>
     );
   }
@@ -72,15 +90,47 @@ export function CameraScreen() {
     }
   }
 
+  const handleBarCodeScanned = ({ type, data}: BarCodeScannerResult) => {
+    setScanned(true);
+    alert(data);
+  };
+
+  const handleFacesDetected = ({ faces }: FaceDetectionResult): void => {
+    if (faces.length > 0) {
+      const faceDetect = faces[0] as FaceDetector.FaceFeature
+      setFace(faceDetect)
+    } else {
+      setFace(undefined)
+    }
+  }
+
   return (
     <View style={styles.container}>
   
     {takePhoto ? (
       <>
-      <Camera style={styles.camera} type={type} ref={ref} ratio='1:1'>
+      <Camera style={styles.camera} type={type} ref={ref} ratio='1:1'
+      onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+      onFacesDetected={handleFacesDetected}
+      faceDetectorSettings={{
+        mode: FaceDetector.FaceDetectorMode.accurate,
+        detectLandmarks: FaceDetector.FaceDetectorLandmarks.all,
+        runClassifications: FaceDetector.FaceDetectorClassifications.all,
+        minDetectionIntervall: 1000,
+        tracking: true,
+      }}
+      >
         <ComponentButtonInterface title='Gire' type="laranjinha" onPresI={toggleCameraType}/>
         <ComponentButtonTakePicture onPressIn={takePicture}/>
+        <ComponentButtonInterface title='Escaneie novamente' type="laranjinha" onPresI={()=> setScanned(true)}/>
       </Camera>
+      <View style={styles.sorriso}>
+        {face && face.smilingProbability && face.smilingProbability > 0.5 ? (
+          <Text>Sorrindo</Text>
+        ) : (
+          <Text>Não</Text>
+        )}
+      </View>
       </>
     ) : (
       <>

@@ -8,6 +8,8 @@ import * as MediaLibrary from 'expo-media-library';
 import * as ImagePicker from 'expo-image-picker';
 import * as FaceDetector from 'expo-face-detector';
 import { BarCodeScanner, BarCodeScannerResult } from 'expo-barcode-scanner';
+import { colors } from '../../styles/colors';
+
 
 export function CameraScreen() {
   const [type, setType] = useState(CameraType.back);
@@ -109,6 +111,7 @@ export function CameraScreen() {
   
     {takePhoto ? (
       <>
+      <ComponentButtonInterface title='Gire' type="laranjinha" onPresI={toggleCameraType}/>
       <Camera style={styles.camera} type={type} ref={ref} ratio='1:1'
       onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
       onFacesDetected={handleFacesDetected}
@@ -120,15 +123,18 @@ export function CameraScreen() {
         tracking: true,
       }}
       >
-        <ComponentButtonInterface title='Gire' type="laranjinha" onPresI={toggleCameraType}/>
+      <View style={styles.camera}>
         <ComponentButtonTakePicture onPressIn={takePicture}/>
-        <ComponentButtonInterface title='Escaneie novamente' type="laranjinha" onPresI={()=> setScanned(false)}/>
+        <TouchableOpacity onPress={toggleCameraType} >
+        </TouchableOpacity>
+      </View>
       </Camera>
+      <ComponentButtonInterface title='Escaneie novamente' type="laranjinha" onPresI={()=> setScanned(false)}/>
       <View style={styles.sorriso}>
         {face && face.smilingProbability && face.smilingProbability > 0.5 ? (
-          <Text>Sorrindo</Text>
+          <Text> :) </Text>
         ) : (
-          <Text>Não</Text>
+          <Text>Sorria</Text>
         )}
       </View>
       </>

@@ -7,12 +7,10 @@ export const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     camera: {
-      flex: 1,
+      flex: 10,
       justifyContent: "flex-end",
       alignItems: "center",
-      marginBottom: 10,
-      borderRadius: 5,
-      backgroundColor: colors.black
+      marginBottom: 15
     },
     buttonContainer: {
       flex: 1,
@@ -31,11 +29,11 @@ export const styles = StyleSheet.create({
       color: 'white',
     },
     img: {
-      width: Dimensions.get('window').width *0.7,
-      height: Dimensions.get('window').width *0.7,
+      width: Dimensions.get('window').width *0.8,
+      height: Dimensions.get('window').width *0.8,
     },
     sorriso: {
-      flex: 1,
+      flex: 3,
       justifyContent: 'center',
       alignItems: 'center',
     }

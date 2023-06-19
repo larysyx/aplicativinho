@@ -6,4 +6,5 @@ export const colors = {
     white: '#FFF',
     cinza: '#d9d9d9',
     titulo: '#37474F',
+    azul: '#0398fc'
 }

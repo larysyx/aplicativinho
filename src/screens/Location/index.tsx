@@ -79,7 +79,7 @@ export function LocationScreen() {
         }
     }
 
-    let text = 'Localizando..';
+    let text = 'Localizando...';
     if (errorMsg) {
         text = errorMsg
     } else if (location) {
@@ -107,7 +107,7 @@ export function LocationScreen() {
                     <MapView region={region} style={styles.map} showsUserLocation={true}>
                         {marker && marker.map((i) => (
                             <Marker key={i.latitude} coordinate={i}>
-                                <Entypo name="location-pin" size={48} color={colors.black} />
+                                <Entypo name="location-pin" size={30} color={colors.vermelho} />
                             </Marker>
                         ))}
                         {coords && <Polyline

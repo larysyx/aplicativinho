@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, KeyboardAvoidingView, Text, TextInput, Alert  } from "react-native";
 import { styles } from "./styles";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -30,6 +30,17 @@ export function Login({navigation}: LoginTypes){
             setIsLoading(false);
         }
     }
+
+    function handleChange(item: IAuthenticate){
+        setData({...data, ...item})
+    }
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false)
+        },2000)
+    },[])
+
     return (
         <View style={styles.container}>
             <KeyboardAvoidingView>
@@ -42,6 +53,7 @@ export function Login({navigation}: LoginTypes){
                         keyboardType="email-address"
                         autoCapitalize="none"
                         style={styles.input}
+                        onChangeText={(i) => handleChange({email: i})}
                         />
                 </View>
                 <View style={styles.formRow}>
@@ -52,10 +64,11 @@ export function Login({navigation}: LoginTypes){
                         secureTextEntry={true}
                         autoCapitalize="none"
                         style={styles.input}
+                        onChangeText={(i) => handleChange({password: i})}
                         />
                 </View>
-                <ComponentButtonInterface title="Entrar" type='lescuro' onPresI={() => { navigation.navigate('Tab') }} />
-                <ComponentButtonInterface title="Cadastrar" type='laranjinha' onPresI={() => { navigation.navigate('Cadastrar') }} />
+                <ComponentButtonInterface title="Entrar" type='lescuro' onPresI={handleSing} />
+                <ComponentButtonInterface title="Cadastrar-se" type='laranjinha' onPresI={() => { navigation.navigate('Cadastrar') }} />
             </KeyboardAvoidingView>
         </View>
     )

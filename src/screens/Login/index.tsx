@@ -14,7 +14,7 @@ export function Login({navigation}: LoginTypes){
     const { singIn } = useAuth();
     const [data, setData] = useState<IAuthenticate>();
     const [isLoading, setIsLoading] = useState(true);
-    async function handleSing() {
+    async function handleSingIn() {
         try {
             setIsLoading(true);
             if (data?.email && data.password) {
@@ -67,7 +67,7 @@ export function Login({navigation}: LoginTypes){
                         onChangeText={(i) => handleChange({password: i})}
                         />
                 </View>
-                <ComponentButtonInterface title="Entrar" type='lescuro' onPresI={handleSing} />
+                <ComponentButtonInterface title="Entrar" type='lescuro' onPresI={handleSingIn} />
                 <ComponentButtonInterface title="Cadastrar-se" type='laranjinha' onPresI={() => { navigation.navigate('Cadastrar') }} />
             </KeyboardAvoidingView>
         </View>
